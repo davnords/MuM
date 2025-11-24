@@ -1,7 +1,7 @@
 <div align="center">
 <h1>MuM: Multi-View Masked Image Modeling for 3D Vision</h1>
 
-<a href="https://arxiv.org/abs/TBD"><img src="https://img.shields.io/badge/arXiv-2503.TBD-b31b1b" alt="arXiv"></a>
+<a href="https://arxiv.org/abs/2511.17309"><img src="https://img.shields.io/badge/arXiv-2511.17309-b31b1b" alt="arXiv"></a>
 
 **Chalmers University of Technology**; **Linköping University**; **University of Amsterdam**
 
@@ -92,5 +92,13 @@ Our code is largely inspired by [VGGT](https://github.com/facebookresearch/vggt)
 
 If you find our work useful, please consider citing our paper!
 ```
-TBD:
+@misc{nordström2025mum,
+      title={MuM: Multi-View Masked Image Modeling for 3D Vision}, 
+      author={David Nordström and Johan Edstedt and Fredrik Kahl and Georg Bökman},
+      year={2025},
+      eprint={2511.17309},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.17309}, 
+}
 ```
