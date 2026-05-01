@@ -10,6 +10,7 @@
 
 ## Updates
 
+- [May 1, 2026] Experimental training code released on the [train-dev](https://github.com/davnords/MuM/tree/train-dev) branch. Code will be merged after further cleanup.
 - [March 4, 2026] Accepted to CVPR26. 
 - [November 22, 2025] Initial release of inference code. 
 
