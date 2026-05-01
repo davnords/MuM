@@ -1,0 +1,20 @@
+model:
+  name: vit_large
+  patch_size: 16
+  norm_layer: layernormbf16
+  drop_path_rate: 0.0
+  layerscale: null
+train:
+  steps: 500000
+  warmup_steps: 25000
+  img_size: 224 
+  optimizer: adamw
+data:
+  common_config:
+    img_nums:
+    - 2
+    - 12
+  num_workers: 8
+  imagenet:
+    prob: 0.10
+    dataset_path: ImageNet:split=TRAIN:root=data/imagenet:extra=./extra

@@ -74,11 +74,22 @@ pip install torch==2.6.0+cu118 torchvision==0.21.0+cu118 --extra-index-url https
 pip install matplotlib
 ```
 
+## Training
+
+⚠️ WARNING THIS BRANCH IS PRELIMINARY AND HAS NOT BEEN TESTED. 
+
+To train MuM you need to download the relevant datasets. We provide provide code for training on MegaDepth, however, training on the other datasets follows a similar protocol. We assume you have downloaded MegaDepth and pre-processed it in accordange with e.g. [RoMa](https://github.com/Parskatt/RoMa) and [DKM](https://github.com/parskatt/dkm). You also need to either create your own annotations (that describe the sampling of image sequences) or download ours. We have posted the annotaions for all datasets [here](https://github.com/davnords/MuM/releases/tag/annotations). We provide some unorganized data preprocessing scripts in [experiments/preprocess](experiments/preprocess).
+
+The full MuM model is trained on 32xA100. We ran something like:
+```bash
+python experiments/train.py --config-file mum/configs/mum.yaml --name mum --ngpus 8 --nodes 4 --track-wandb
+```
+
 ## Checklist
 
 - [x] Provide basic feature extraction inference code
-- [ ] Release the pre-training code
-- [ ] Provide data processing scripts and annotation files
+- [x] Release the pre-training code
+- [x] Provide data processing scripts and annotation files
 - [ ] Release all evaluations
 
 ## License

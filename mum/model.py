@@ -13,6 +13,12 @@ norm_layer_dict = {
     "layernormbf16": partial(nn.LayerNorm, eps=1e-5),
 }
 
+dtype_dict = {
+    "fp32": torch.float32,
+    "fp16": torch.float16,
+    "bf16": torch.bfloat16,
+}
+
 def init_weights_vit(module: nn.Module, name: str = ""):
     if isinstance(module, nn.Linear):
         torch.nn.init.trunc_normal_(module.weight, std=0.02)

@@ -1,0 +1,112 @@
+checkpoint: null
+dtype: bf16
+train:
+  steps: 100000
+  warmup_steps: 6250
+  checkpoint_steps: 5000
+  visualization_steps: 10000
+  img_size: 224
+  lr: null
+  blr: 1.5e-4
+  min_lr: 0.
+  seed: 1337
+  weight_decay: 0.05
+  optimizer: adamw
+loss:
+  mask_ratio: 0.75
+model:
+  name: vit_base
+  patch_embed: conv
+  patch_size: 16
+  norm_pix_loss: true
+  drop_path_rate: 0.0
+  layerscale: null # 1.0e-05
+  ffn_layer: "mlp"
+  ffn_ratio: 4.0
+  qkv_bias: true
+  proj_bias: true
+  ffn_bias: true
+  norm_layer: "layernorm"
+  n_storage_tokens: 0
+  in_chans: 3
+  pos_embed_type: rope
+  pos_embed_rope_base: 100.0
+  pos_embed_rope_min_period: null
+  pos_embed_rope_max_period: null
+  pos_embed_rope_normalize_coords: separate  # min, max, separate
+  pos_embed_rope_shift_coords: null
+  pos_embed_rope_jitter_coords: null
+  pos_embed_rope_rescale_coords: null
+  pos_embed_rope_dtype: ${dtype}
+  fp8_enabled: False  # Convert Linear layers to operate in fp8 precision
+  fp8_filter: "blocks"  # Regex that must appear in module path; empty means everything
+data:
+  datasets:
+    - MegaDepthDataset:DATA_DIR=data/megadepth
+    
+    # TODO: We also trained on these datasets for the main MuM model
+    # - BlendedMVSDataset:DATA_DIR=data/blendedmvs
+    # - DL3DVDataset:DATA_DIR=data/DL3DV-10K
+    # - ScanNetppDataset:DATA_DIR=data/scannetpp_data/data
+    # - MegaScenesDataset:DATA_DIR=data/megascenes
+    # - Co3dDataset:DATA_DIR=data/co3d:ANNOTATION_DIR=davnords/co3d_anno/cleaned    
+    # - WildRGBDataset:DATA_DIR=data/wildrgbd
+    # - StreetViewDataset:DATA_DIR=data/3D_Street_View_data/dataset_aligned
+    # - ARKitScenesDataset:DATA_DIR=data/ARKitScenes_data/3dod/Training
+    # - RealEstate10KDataset:DATA_DIR=data/RealEstate10K_Downloader/dataset/train
+    # - HypersimDataset:DATA_DIR=data/ml-hypersim/contrib/99991/downloads
+
+  common_config:
+    aspects:
+    - 0.5
+    - 1.0
+    img_nums:
+    - 2
+    - 12
+    img_size: ${train.img_size}
+    patch_size: ${model.patch_size}
+    rescale: true
+    rescale_aug: true
+    landscape_check: true
+    debug: false
+    training: true
+    inside_random: true
+    aug_scale:
+      - 0.8
+      - 1.2
+    fix_img_num: false
+    fix_aspect_ratio: false
+  num_workers: 8
+  shuffle: true
+  pin_memory: true
+  drop_last: true
+  max_img_per_gpu: 128
+  imagenet:
+    prob: 0.0
+    dataset_path: ImageNet:split=TRAIN:root=data/imagenet:extra=./extra
+  
+# Automatic evals during training
+# TODO: Add evals you like for evaluation during training
+evals:
+  fast:
+    period: 25000
+    final: true
+    model_setup_script: model_loader.py
+    eval_config:
+      matchbench:
+        file: "eval_matchbench.py"
+        dataset: "megadepth"
+        dataset_path: "data/megadepth"
+        matcher: "knn"
+  slow:
+    period: 50000
+    final: true
+    model_setup_script: model_loader.py
+    eval_config:
+      matchbench:
+        file: "eval_matchbench.py"
+        dataset: "megadepth"
+        dataset_path: "data/megadepth"
+        matcher: "linear"
+launcher:
+  partition: alvis
