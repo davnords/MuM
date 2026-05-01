@@ -2,6 +2,7 @@
 <h1>MuM: Multi-View Masked Image Modeling for 3D Vision</h1>
 
 <a href="https://arxiv.org/abs/2511.17309"><img src="https://img.shields.io/badge/arXiv-2511.17309-b31b1b" alt="arXiv"></a>
+<a href="https://www.davnords.com/mum"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
 
 **Chalmers University of Technology**; **Linköping University**; **University of Amsterdam**
 
