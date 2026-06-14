@@ -1,0 +1,23 @@
+[project]
+name = "matchbench"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Johan Edstedt", email = "johan.edstedt@liu.se" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "romatch>=0.0.2",
+    "tyro>=0.9.28",
+]
+
+[project.scripts]
+matchbench = "matchbench:cli"
+
+[build-system]
+requires = ["uv_build>=0.8.3,<0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+romatch = { git = "https://github.com/parskatt/roma.git" }

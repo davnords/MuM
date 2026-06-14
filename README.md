@@ -2,6 +2,7 @@
 <h1>MuM: Multi-View Masked Image Modeling for 3D Vision</h1>
 
 <a href="https://arxiv.org/abs/2511.17309"><img src="https://img.shields.io/badge/arXiv-2511.17309-b31b1b" alt="arXiv"></a>
+<a href="https://www.davnords.com/mum"><img src="https://img.shields.io/badge/Project_Page-green" alt="Project Page"></a>
 
 **Chalmers University of Technology**; **Linköping University**; **University of Amsterdam**
 
@@ -10,6 +11,7 @@
 
 ## Updates
 
+- [May 1, 2026] Experimental training code released on the [train-dev](https://github.com/davnords/MuM/tree/train-dev) branch. Code will be merged after further cleanup.
 - [March 4, 2026] Accepted to CVPR26. 
 - [November 22, 2025] Initial release of inference code. 
 
@@ -53,11 +55,15 @@ This should give something like:
 
 ## Pretrain
 
-[COMING]: We aim to release this soon.
+See [train-dev](https://github.com/davnords/MuM/tree/train-dev) branch. Code will be merged after further cleanup.
 
 ## Evaluation
 
-[COMING]: We aim to release all our evaluations in a separate branch.
+⚠️ WARNING THIS BRANCH IS PRELIMINARY AND HAS NOT BEEN TESTED. 
+
+We are working on evaluation in this branch. Please send me an email if there is a specific evaluation you would like to see. We have begun with the linear / zero-shot matching evaluation (labeled here as matchbench). This is the main evaluation we used in designing MuM and also what was logged during training to track progression.
+
+
 
 ## Setup/Install
 
@@ -74,22 +80,11 @@ pip install torch==2.6.0+cu118 torchvision==0.21.0+cu118 --extra-index-url https
 pip install matplotlib
 ```
 
-## Training
-
-⚠️ WARNING THIS BRANCH IS PRELIMINARY AND HAS NOT BEEN TESTED. 
-
-To train MuM you need to download the relevant datasets. We provide provide code for training on MegaDepth, however, training on the other datasets follows a similar protocol. We assume you have downloaded MegaDepth and pre-processed it in accordange with e.g. [RoMa](https://github.com/Parskatt/RoMa) and [DKM](https://github.com/parskatt/dkm). You also need to either create your own annotations (that describe the sampling of image sequences) or download ours. We have posted the annotaions for all datasets [here](https://github.com/davnords/MuM/releases/tag/annotations). We provide some unorganized data preprocessing scripts in [experiments/preprocess](experiments/preprocess).
-
-The full MuM model is trained on 32xA100. We ran something like:
-```bash
-python experiments/train.py --config-file mum/configs/mum.yaml --name mum --ngpus 8 --nodes 4 --track-wandb
-```
-
 ## Checklist
 
 - [x] Provide basic feature extraction inference code
-- [x] Release the pre-training code
-- [x] Provide data processing scripts and annotation files
+- [ ] Release the pre-training code
+- [ ] Provide data processing scripts and annotation files
 - [ ] Release all evaluations
 
 ## License
@@ -104,7 +99,7 @@ Our code is largely inspired by [VGGT](https://github.com/facebookresearch/vggt)
 
 If you find our work useful, please consider citing our paper!
 ```bibtex
-@inproceedings{nordström2025mum,
+@inproceedings{nordstrom2026mum,
   title={MuM: Multi-View Masked Image Modeling for 3D Vision}, 
   author={David Nordström and Johan Edstedt and Fredrik Kahl and Georg Bökman},
   booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition},
