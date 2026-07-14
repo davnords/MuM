@@ -6,6 +6,8 @@ pretrained_models/
 precomputed_pairs/
 preprocessing/
 build/
+dist/
+.venv/
 output/
 wandb/
 *__pycache__/
@@ -23,3 +25,4 @@ output_dir/
 outputs/
 code1.py
 code2.py
+*.egg-info

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mum"
+version = "0.1.0"
+description = "MuM: Multi-View Masked Image Modeling for 3D Vision"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    {name = "David Nordström"},
+    {name = "Johan Edstedt"},
+    {name = "Fredrik Kahl"},
+    {name = "Georg Bökman"},
+]
+dependencies = [
+    "torch",
+    "torchvision",
+    "pillow",
+]
+
+[project.optional-dependencies]
+viz = [
+    "matplotlib",
+]
+
+[tool.setuptools.packages.find]
+include = ["mum*"]

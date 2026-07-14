@@ -8,7 +8,6 @@ from .layers import (
     named_replace,
     uncat_with_shapes,
 )
-from .viz import qualitative_evaluation
 from torchvision import transforms
 from PIL import Image
 

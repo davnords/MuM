@@ -38,7 +38,8 @@ feats = model.forward_features(images)['x_norm_patchtokens'] # B, P, 1024
 The full model (including decoder) performs normalized pixel reconstruction in its forward pass. It can also be easily finetuned for any multi-view task. Here is an example use-case:
 ```python
 from mum import mum_vitl16_decoderb
-from mum.utils import qualitative_evaluation, transform_image
+from mum.utils import transform_image
+from mum.utils.viz import qualitative_evaluation
 import torch
 
 IMAGE_LIST = ["assets/wma1.jpg", "assets/wma2.jpg", "assets/wma3.jpg"]
@@ -65,17 +66,24 @@ See [train-dev](https://github.com/davnords/MuM/tree/train-dev) branch. Code wil
 
 ## Setup/Install
 
-For this release (solely inference code), you really just need a modern `torch` and `torchvision` version. I use `2.6.0+cu118` and `0.21.0+cu118`, respectively, together with Python 3.11.9. Using this, I can replicate the reported evaluations (to be released shortly), but any new version should work fine. For visualizations, you also need `matplotlib`.  
+Install via pip (requires Python 3.10+):
 
-To most easily achieve this, you can e.g. run:
 ```bash
-conda create -n mum python=3.11.9
-conda activate mum
+# Core package (torch and torchvision required)
+pip install mum
 
-# Any modern version should work fine, this is what I use 
-pip install torch==2.6.0+cu118 torchvision==0.21.0+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
-# Optional, needed for running code examples
-pip install matplotlib
+# With visualization support (includes matplotlib)
+pip install mum[viz]
+```
+
+For this release (solely inference code), you need a modern `torch` and `torchvision` version. I use `2.6.0+cu118` and `0.21.0+cu118`, respectively, together with Python 3.11.9. Using this, I can replicate the reported evaluations (to be released shortly), but any new version should work fine.
+
+To install from source:
+```bash
+git clone https://github.com/davnords/MuM.git
+cd MuM
+pip install -e .          # core package
+pip install -e ".[viz]"   # with visualization support
 ```
 
 ## Checklist
